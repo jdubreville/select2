@@ -365,6 +365,8 @@ define([
       maximumSelectionLength: 0,
       minimumResultsForSearch: 0,
       selectOnClose: false,
+	  openOnClear: true,
+	  openWithDownArrowOnFocus : false,
       sorter: function (data) {
         return data;
       },

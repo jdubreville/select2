@@ -1808,7 +1808,9 @@ S2.define('select2/selection/allowClear',[
 
     this.$element.val(this.placeholder.id).trigger('change');
 
-    this.trigger('toggle', {});
+	if(this.options.get('openOnClear')){
+    	this.trigger('toggle', {});
+	}
   };
 
   AllowClear.prototype._handleKeyboardClear = function (_, evt, container) {
@@ -4894,6 +4896,8 @@ S2.define('select2/defaults',[
       maximumSelectionLength: 0,
       minimumResultsForSearch: 0,
       selectOnClose: false,
+	  openOnClear: true,
+	  openWithDownArrowOnFocus : false,
       sorter: function (data) {
         return data;
       },
@@ -5393,7 +5397,8 @@ S2.define('select2/core',[
         }
       } else {
         if (key === KEYS.ENTER || key === KEYS.SPACE ||
-            (key === KEYS.DOWN && evt.altKey)) {
+            (key === KEYS.DOWN && evt.altKey) ||
+			(this.options.get('openWithDownArrowOnFocus') && key === KEYS.DOWN)) {
           self.open();
 
           evt.preventDefault();

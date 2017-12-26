@@ -344,7 +344,8 @@ define([
         }
       } else {
         if (key === KEYS.ENTER || key === KEYS.SPACE ||
-            (key === KEYS.DOWN && evt.altKey)) {
+            (key === KEYS.DOWN && evt.altKey) ||
+			(this.options.get('openWithDownArrowOnFocus') && key === KEYS.DOWN)) {
           self.open();
 
           evt.preventDefault();
