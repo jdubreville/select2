@@ -28,11 +28,20 @@
 			</select>
 			<script type="text/javascript">
 				$(document).ready(function(){
+					var $select = $("#test");
 					$("#test").select2({
 						placeholder : 'Test',
 						allowClear : true,
 						openOnClear : false,
 						openWithDownArrowOnFocus : true
+					});
+
+					$select.on('select2:focus', function(e){
+						console.dir('focussed');
+					}).on('blur', function(e){
+						console.dir('blurrd')
+					}).on('select2:blur', function(e){
+						console.dir('select2:blur');
 					});
 
 				});

@@ -246,6 +246,12 @@ define([
       self.focus(params);
     });
 
+	this.selection.on('blur', function(params){
+		if(!self.isOpen()){
+			self.$element.trigger('select2:blur');
+		}
+	});
+
     this.selection.on('*', function (name, params) {
       if ($.inArray(name, nonRelayEvents) !== -1) {
         return;
@@ -441,7 +447,6 @@ define([
         return;
       }
     }
-
     actualTrigger.call(this, name, args);
   };
 
@@ -489,6 +494,7 @@ define([
 
     this.$container.addClass('select2-container--focus');
     this.trigger('focus', {});
+	this.$element.trigger('select2:focus');
   };
 
   Select2.prototype.enable = function (args) {

@@ -5299,6 +5299,12 @@ S2.define('select2/core',[
       self.focus(params);
     });
 
+	this.selection.on('blur', function(params){
+		if(!self.isOpen()){
+			self.$element.trigger('select2:blur');
+		}
+	});
+
     this.selection.on('*', function (name, params) {
       if ($.inArray(name, nonRelayEvents) !== -1) {
         return;
@@ -5494,7 +5500,6 @@ S2.define('select2/core',[
         return;
       }
     }
-
     actualTrigger.call(this, name, args);
   };
 
@@ -5542,6 +5547,7 @@ S2.define('select2/core',[
 
     this.$container.addClass('select2-container--focus');
     this.trigger('focus', {});
+	this.$element.trigger('select2:focus');
   };
 
   Select2.prototype.enable = function (args) {
